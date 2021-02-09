@@ -28,19 +28,32 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
-
+  let pname = variables.name ? variables.name : "Lucy";
+  let plastname = variables.lastname ? variables.lastname : "Boilet";
+  let prole = variables.role ? variables.role : "System Admin";
+  let pplace = variables.city + " " + variables.country;
+  let pposition;
+  let pinvisible = "visible";
+  if (variables.socialMediaPosition == "position-right") {
+    pposition = "position-right";
+  } else if (variables.socialMediaPosition == null) {
+    pposition = "";
+    pinvisible = "hidden";
+  } else {
+    pposition = "position-left";
+  }
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          <h1>${pname} ${plastname}</h1>
+          <h2>${prole}</h2>
+          <h3>${pplace}</h3>
+          <ul class="${pposition}" style="visibility:${pinvisible};">
+            <li><a href="https://twitter.com/AG_Warrior"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="https://github.com/aleguerrerom"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/alejguerrerom94><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/aleguerrerom94"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
